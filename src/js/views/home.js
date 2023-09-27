@@ -1,11 +1,18 @@
 import React from "react";
+import { CharacterCard } from "../component/characterCard";
 import "../../styles/home.css";
 
 export const Home = () => (
-	<div className="text-center">
-
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+	<div className="mx-4 px-4 py-0">
+		<h2 className="text-white pb-4 pt-1">Characters</h2>
+		<div className="container-fluid d-flex justify-content-between ps-0">
+			<CharacterCard />
+			<CharacterCard />
+			<CharacterCard />
+			<CharacterCard />
+			<CharacterCard />
+			<CharacterCard />
+			<CharacterCard />
+		</div>
 	</div>
 );

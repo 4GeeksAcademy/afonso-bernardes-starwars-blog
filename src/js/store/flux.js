@@ -7,7 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			
 			loadCharacters: () => {
 				fetch("https://www.swapi.tech/api/people/")
 				.then(res => res.json())
