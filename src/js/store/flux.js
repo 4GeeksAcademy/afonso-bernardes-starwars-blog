@@ -3,14 +3,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			favourites: [],
 			characters: [],
+			charactersDetails: [],
 			planets: [],
 		},
+
 		actions: {
 			// Use getActions to call a function within a fuction
 			loadCharacters: () => {
 				fetch("https://www.swapi.tech/api/people/")
 				.then(res => res.json())
 				.then(characters => setStore( {"characters": [...characters.results]} ))
+				.then(lol => console.log(getStore().characters))
+				.catch(err => console.error(err))
+			},
+
+			loadCharactersDetails: (chararcterUrl) => {
+				fetch(`${chararcterUrl}`)
+				.then(res => res.json())
+				.then(lol => console.log(lol.results))
+				.then(characters => setStore( {"charactersDetails": [...characters.properties]} ))
 				.catch(err => console.error(err))
 			},
 
