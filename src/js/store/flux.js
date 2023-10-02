@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				simpleCharList.forEach(element => {
 					fetch(element.url)
 					.then(res => res.json())
-					.then(charactersData => setStore( {"charactersDetails": [...getStore().charactersDetails, charactersData.result.properties]} ))
+					.then(charactersData => setStore( {"charactersDetails": [...getStore().charactersDetails, {...charactersData.result.properties, image: `https://starwars-visualguide.com/assets/img/characters/${element.uid}.jpg`}]} ))
 					//.then(lol => console.log("charactersDetails array: ", getStore().charactersDetails))
 					.catch(err => console.error("Error on loadCharactersDetails: ", err))
 				})
