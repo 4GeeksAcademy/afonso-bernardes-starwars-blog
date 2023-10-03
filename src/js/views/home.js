@@ -12,7 +12,7 @@ export const Home = () => {
 			<div className="container-fluid overflow-auto d-flex justify-content-between ps-0">
 				{
 					store.charactersDetails.map( (element, idx) => {
-						return <CharacterCard key={idx} characterInfo={element} characterImage={"https://picsum.photos/500/300"} />;
+						return <CharacterCard key={idx} characterInfo={element} />;
 					})
 				}
 			</div>

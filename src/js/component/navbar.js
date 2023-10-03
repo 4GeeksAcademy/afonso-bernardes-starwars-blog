@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<nav className="navbar navbar-light bg-dark bg-gradient mb-3 px-5">
 			<Link to="/">
@@ -13,8 +18,19 @@ export const Navbar = () => {
 					Favourites <span className="bg-white text-dark mx-2 px-2 rounded-circle">0</span>
 				</button>
 
-				<ul className="dropdown-menu">
-					<li><a className="dropdown-item" href="#">Action</a></li>
+				<ul className="dropdown-menu py-0">
+					{
+						store.favourites.map( (element, idx) => {
+							return (
+								<li key={idx} className="d-flex justify-content-between">
+									<a className="dropdown-item py-2 fw-bold" href="#"> {element.characterInfo.name} </a>
+									<div className="btn">
+										<FontAwesomeIcon className="me-1" icon={faTrash} />
+									</div>
+								</li>
+							)
+						})
+					};
 				</ul>
 			</div>
 		</nav>

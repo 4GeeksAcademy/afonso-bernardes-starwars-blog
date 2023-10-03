@@ -51,6 +51,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.error("Error on loadPlanetsDetails: ", err))
 				})
 			},
+
+			addFavourite: (item) => {
+				setStore( {"favourites": [...getStore().favourites, item]} )
+				console.log(getStore().favourites)
+			}
 		}
 	};
 };
