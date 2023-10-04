@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,6 +6,11 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+
+	const handleDelete = (event, elementToDelete) => {
+		actions.deleteFavourite(elementToDelete)
+		console.log(store.favourites)
+	}
 
 	return (
 		<nav className="navbar navbar-light bg-dark bg-gradient mb-3 px-5">
@@ -15,7 +20,7 @@ export const Navbar = () => {
 
 			<div className="dropdown me-4">
 				<button className="btn btn-secondary bg-dark dropdown-toggle pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-					Favourites <span className="bg-white text-dark mx-2 px-2 rounded-circle">0</span>
+					Favourites <span className="bg-white text-dark mx-2 px-2 rounded-circle">{store.favourites.length}</span>
 				</button>
 
 				<ul className="dropdown-menu py-0">
@@ -24,13 +29,13 @@ export const Navbar = () => {
 							return (
 								<li key={idx} className="d-flex justify-content-between">
 									<a className="dropdown-item py-2 fw-bold" href="#"> {element.characterInfo.name} </a>
-									<div className="btn">
+									<div className="btn" onClick={handleDelete(element)}>
 										<FontAwesomeIcon className="me-1" icon={faTrash} />
 									</div>
 								</li>
 							)
 						})
-					};
+					}
 				</ul>
 			</div>
 		</nav>

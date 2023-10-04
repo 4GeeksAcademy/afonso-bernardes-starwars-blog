@@ -11,6 +11,7 @@ export const CharacterCard = (props) => {
     const handleLike = (event) => {
         event.preventDefault()
         actions.addFavourite(props)
+        console.log(props)
     }
 
     return (
