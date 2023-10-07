@@ -57,13 +57,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			deleteFavourite: (itemToDelete) => {
-				const temp_favs = [];
+				let favourites = [];
 				getStore().favourites.forEach((element) => {
 					if (element.info["uid"] != itemToDelete["uid"]) {
-						temp_favs.append(element)
+						favourites.push(element)
 					}
-					console.log(temp_favs)
 				})
+				setStore( {"favourites": favourites} )
 				/*setStore( {"favourites": getStore().favourites.filter(element => {
 					console.log(element.info["uid"] != itemToDelete["uid"])
 					element.info["uid"] != itemToDelete["uid"]

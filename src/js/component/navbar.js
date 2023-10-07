@@ -8,7 +8,8 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
 	const handleDelete = (event, elementToDelete) => {
-		event.preventDefault()
+		event.preventDefault();
+		event.stopPropagation(); // Avoids dropdown closing when item is deleted.
 		actions.deleteFavourite(elementToDelete)
 	}
 
