@@ -53,7 +53,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFavourite: (item) => {
-				setStore( {"favourites": [...getStore().favourites, item]} )
+				// Avoid adding duplicates to favourites.
+				let duplicate = false
+				getStore().favourites.forEach( (element) => {
+					if (item.info.uid == element.info.uid) {
+						duplicate = true
+					};
+				})
+
+				if (!duplicate) {
+					setStore( {"favourites": [...getStore().favourites, item] })
+				};
 			},
 
 			deleteFavourite: (itemToDelete) => {
