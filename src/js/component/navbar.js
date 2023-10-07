@@ -8,8 +8,8 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
 	const handleDelete = (event, elementToDelete) => {
+		event.preventDefault()
 		actions.deleteFavourite(elementToDelete)
-		console.log(store.favourites)
 	}
 
 	return (
@@ -25,16 +25,17 @@ export const Navbar = () => {
 
 				<ul className="dropdown-menu py-0">
 					{
-						store.favourites.map( (element, idx) => {
+						store.favourites.map((element, idx) => {
 							return (
-								<li key={idx} className="d-flex justify-content-between">
-									<a className="dropdown-item py-2 fw-bold" href="#"> {element.characterInfo.name} </a>
-									<div className="btn" onClick={handleDelete(element)}>
+								<li key={element.info["uid"]} className="d-flex justify-content-between">
+									<a className="dropdown-item py-2 fw-bold" href="#"> {element.info.name} </a>
+									<div className="btn" onClick={(event) => handleDelete(event, element.info)}>
 										<FontAwesomeIcon className="me-1" icon={faTrash} />
 									</div>
 								</li>
 							)
 						})
+
 					}
 				</ul>
 			</div>
