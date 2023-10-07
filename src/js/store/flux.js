@@ -1,3 +1,5 @@
+import { sortBy } from "lodash"
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -25,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				simpleCharList.forEach(element => {
 					fetch(element.url)
 					.then(res => res.json())
-					.then(charactersData => setStore( {"charactersDetails": [...getStore().charactersDetails, {...charactersData.result.properties, "uid": element.uid, image: `https://starwars-visualguide.com/assets/img/characters/${element.uid}.jpg`}]} ))
+					.then(charactersData => setStore( {"charactersDetails": [...getStore().charactersDetails, {...charactersData.result.properties, "uid": element.uid, image: `https://starwars-visualguide.com/assets/img/characters/${element.uid}.jpg`}].sort( (a, b) => a.uid - b.uid ) }))
 					//.then(lol => console.log("charactersDetails array: ", getStore().charactersDetails))
 					.catch(err => console.error("Error on loadCharactersDetails: ", err))
 				})
@@ -46,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				simplePlanetList.forEach(element => {
 					fetch(element.url)
 					.then(res => res.json())
-					.then(planetData => setStore( {"planetsDetails": [...getStore().planetsDetails, {...planetData.result.properties,  "uid": element.uid, image: `https://starwars-visualguide.com/assets/img/planets/${element.uid}.jpg`} ]} ))
+					.then(planetData => setStore( {"planetsDetails": [...getStore().planetsDetails, {...planetData.result.properties,  "uid": element.uid, image: `https://starwars-visualguide.com/assets/img/planets/${element.uid}.jpg`}].sort( (a, b) => a.uid - b.uid ) }))
 					//.then(lol => console.log("planetsDetails array: ", getStore().planetsDetails))
 					.catch(err => console.error("Error on loadPlanetsDetails: ", err))
 				})

@@ -17,8 +17,9 @@ export const Home = () => {
 					})
 				}
 			</div>
-
-			<div className="container-fluid overflow-auto d-flex justify-content-between ps-0 mt-5">
+			
+			<h2 className="text-white pb-4 pt-1 mt-5">Planets</h2>
+			<div className="container-fluid overflow-auto d-flex justify-content-between ps-0">
 				{
 					store.planetsDetails.map( (element, idx) => {
 						return <PlanetCard key={idx} info={element} />;
