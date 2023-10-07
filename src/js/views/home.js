@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { CharacterCard } from "../component/characterCard";
+import { PlanetCard } from "../component/planetCard";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -13,6 +14,14 @@ export const Home = () => {
 				{
 					store.charactersDetails.map( (element, idx) => {
 						return <CharacterCard key={idx} info={element} />;
+					})
+				}
+			</div>
+
+			<div className="container-fluid overflow-auto d-flex justify-content-between ps-0 mt-5">
+				{
+					store.planetsDetails.map( (element, idx) => {
+						return <PlanetCard key={idx} info={element} />;
 					})
 				}
 			</div>
