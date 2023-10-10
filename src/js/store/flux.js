@@ -58,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// Avoid adding duplicates to favourites.
 				let duplicate = false
 				getStore().favourites.forEach( (element) => {
-					if (item.info.uid == element.info.uid) {
+					if (item.info.url == element.info.url) {
 						duplicate = true
 					};
 				})
@@ -71,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			deleteFavourite: (itemToDelete) => {
 				let favourites = [];
 				getStore().favourites.forEach((element) => {
-					if (element.info["uid"] != itemToDelete["uid"]) {
+					if (element.info["url"] != itemToDelete["url"]) {
 						favourites.push(element)
 					}
 				})
